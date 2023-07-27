@@ -6,7 +6,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { createAuthLink } from "aws-appsync-auth-link";
-import appSyncConfig from "../aws-exports";
+import appSyncConfig from "@/aws-exports";
 
 const httpLink = createHttpLink({
   uri: appSyncConfig.aws_appsync_graphqlEndpoint,

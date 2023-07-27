@@ -35,8 +35,14 @@ We are using Apollo Client to connect to our API and the `apolloConfig.tsx` has 
 
 SASS is already setup for you. You can find the styles in the **styles** folder and ready for your customization.
 
+### Deployment
+
+- Deploy your application to a hosting service of your choice (AWS, Heroku, Netlify, etc.)
+- Add the details in `aws-exports.js` as environment variables to your hosting service.
+- Update the `apolloConfig.tsx` file to use the environment variables instead of the `aws-exports.js` file.
+
 ### Deliverables
 
 - A link to a public repo with your code
-- A link to a public URL where we can view your application
+- A link to a live demo of your application
 - A short write up on your thought process and any challenges you faced
