@@ -6,13 +6,14 @@ Create a basic web application using React/Next.js and GraphQL that mimics a con
 
 - Users should be able to view/scroll their contact list
 - Users should be able to add new contacts
-- If a user clicks on a contact, they should be routed to the specific contact’s page.
+- If a user clicks on a contact, they should be routed to the specific contact’s page(i.e. /contacts/1).
 - Users should be able to view said contacts details and perform edits to the information
 - Users should be able to remove contacts from their list
 
 ## Evaluation Criteria
 
 - Good use of React / Next.js
+- Good use of the `getStaticProps` and `getStaticPaths` functions in Next.js
 - Proper implantation of CRUD functionality
 - Code readability and organization
 
@@ -35,14 +36,20 @@ We are using Apollo Client to connect to our API and the `apolloConfig.tsx` has 
 
 SASS is already setup for you. You can find the styles in the **styles** folder and ready for your customization.
 
-### Deployment
-
-- Deploy your application to a hosting service of your choice (AWS, Heroku, Netlify, etc.)
-- Add the details in `aws-exports.js` as environment variables to your hosting service.
-- Update the `apolloConfig.tsx` file to use the environment variables instead of the `aws-exports.js` file.
-
 ### Deliverables
 
-- A link to a public repo with your code
-- A link to a live demo of your application
+- A link to a public repo with your code so it can be cloned and tested
+- A link to a live demo of your application **See Below**
 - A short write up on your thought process and any challenges you faced
+
+### Deployment (Optional)
+
+If you choose to deploy your application, it is important that you do not commit the `aws-exports.js` file to your repo as it contains sensitive information. Instead, you should add the details as environment variables to your hosting service. You will also need to update the `apolloConfig.tsx` file to use the environment variables instead of the `aws-exports.js` file.
+
+### Documentation
+
+- [Next.js](https://nextjs.org/docs/getting-started)
+- [Dynamic Routing](https://nextjs.org/learn/basics/dynamic-routes/page-path-external-data)
+- [Apollo Client](https://www.apollographql.com/docs/react/)
+- [Apollo Queries](https://www.apollographql.com/docs/react/data/queries)
+- [Apollo Mutations](https://www.apollographql.com/docs/react/data/mutations/)
