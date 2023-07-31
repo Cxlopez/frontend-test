@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "aws-exports.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/aws-exports.js"],
   "exclude": ["node_modules"]
 }
