@@ -20,7 +20,7 @@ Create a basic web application using React/Next.js and GraphQL that mimics a con
 ### Installation
 
 - Clone the repo and run `npm install` to install dependencies
-- Add a file called `aws-exports.js` to the src folder and add the details provided in the email
+- Add the `aws-exports.js` file provided in the email to the src folder
 - Run `npm run dev` to start the application
 - Navigate to `http://localhost:3000/` to view the application
 
