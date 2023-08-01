@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Link from 'next/link';
 
 export const getStaticProps = async () => {
 
@@ -27,11 +28,11 @@ export default function Home({ contacts }) {
         {/* Your code here */}
         <div>
           {contacts.map(contact => (
-            <div key={contact.id}>
+            <Link legacyBehavior href={`/contactdetails/${contact.id}`} key={contact.id}>
               <a>
                 <h3  className="contactList">{ contact.name }</h3>
               </a>
-            </div>
+            </Link>
           ))}
         </div>
         {/* ∆∆∆∆∆∆∆∆∆∆∆∆∆∆ */}
