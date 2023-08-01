@@ -1,7 +1,18 @@
 import React from "react";
 import Head from "next/head";
 
-export default function Home() {
+export const getStaticProps = async () => {
+
+  const res = await fetch(`http://localhost:3000/api/hello`);
+  const data = await res.json();
+
+  return {
+    props: { contacts: data}
+  }
+
+}
+
+export default function Home({ contacts }) {
   // Your code here
 
   return (
@@ -14,7 +25,15 @@ export default function Home() {
       </Head>
       <main className="home">
         {/* Your code here */}
-
+        <div>
+          {contacts.map(contact => (
+            <div key={contact.id}>
+              <a>
+                <h3  className="contactList">{ contact.name }</h3>
+              </a>
+            </div>
+          ))}
+        </div>
         {/* ∆∆∆∆∆∆∆∆∆∆∆∆∆∆ */}
       </main>
     </>
