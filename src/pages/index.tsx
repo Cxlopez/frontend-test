@@ -2,20 +2,23 @@ import React from "react";
 import Head from "next/head";
 import Link from 'next/link';
 
-export const getStaticProps = async () => {
-
+// Utility function to fetch data from the API
+async function fetchData() {
   const res = await fetch(`http://localhost:3000/api/hello`);
   const data = await res.json();
+  return data;
+}
+
+export const getStaticProps = async () => {
+  // Feth data using the utility function
+  const data = await fetchData();
 
   return {
-    props: { contacts: data}
-  }
-
+    props: { contacts: data } // Pass data as props to Home component
+  };
 }
 
 export default function Home({ contacts }) {
-  // Your code here
-
   return (
     <>
       <Head>
@@ -25,18 +28,17 @@ export default function Home({ contacts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="home">
-        {/* Your code here */}
         <div>
           {contacts.map(contact => (
             <Link legacyBehavior href={`/contactdetails/${contact.id}`} key={contact.id}>
               <a>
-                <h3  className="contactList">{ contact.name }</h3>
+                <h3 className="contactList">{contact.name}</h3>
               </a>
             </Link>
           ))}
         </div>
-        {/* ∆∆∆∆∆∆∆∆∆∆∆∆∆∆ */}
       </main>
     </>
   );
 }
+
