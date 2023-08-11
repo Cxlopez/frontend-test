@@ -1,24 +1,24 @@
 import React from "react";
 import Head from "next/head";
-import Link from 'next/link';
+import { useRouter } from "next/router";
+import { gql, useQuery } from "@apollo/client";
+import { getAllContacts } from "../graphql/queries";
 
-// Utility function to fetch data from the API
-async function fetchData() {
-  const res = await fetch(`http://localhost:3000/api/hello`);
-  const data = await res.json();
-  return data;
-}
 
-export const getStaticProps = async () => {
-  // Feth data using the utility function
-  const data = await fetchData();
+export default function Home() {
 
-  return {
-    props: { contacts: data } // Pass data as props to Home component
-  };
-}
+  const router = useRouter();
+  const { data, loading, error } = useQuery(gql(getAllContacts));
+  const [contacts, setContacts] = React.useState<[] | undefined>([]);
 
-export default function Home({ contacts }) {
+  React.useEffect(() => {
+    if (data && !loading && !error) {
+      setContacts(data.getAllContacts.contacts);
+    } else if (error) {
+      console.error("Error fetching contacts", error);
+    }
+  }, [data, loading, error]);
+
   return (
     <>
       <Head>
@@ -28,17 +28,37 @@ export default function Home({ contacts }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="home">
-        <div>
-          {contacts.map(contact => (
-            <Link legacyBehavior href={`/contactdetails/${contact.id}`} key={contact.id}>
-              <a>
-                <h3 className="contactList">{contact.name}</h3>
-              </a>
-            </Link>
-          ))}
+        <div className="list-container">
+          <div className="list-header">
+            <h1>Contacts</h1>
+            <div className="list-header-search">
+              <input type="text" placeholder="Search" />
+            </div>
+          </div>
+          <div className="list-my-card">
+            <span className="my-card-user-icon" />
+            <div className="my-card-info">
+              <h2>Cristian</h2>
+              <p>My Card</p>
+            </div>
+          </div>
+          <div className="list-contacts">
+            {contacts ? (
+              contacts.map((contact: any) => (
+                <div
+                  className="contact"
+                  key={contact.id}
+                  onClick={() => router.push(`/contactdetails/${contact.id}`)}
+                >
+                  <p>{contact.name}</p>
+                </div>
+              ))
+            ) : (
+              <h2>No Contacts</h2>
+            )}
+          </div>
         </div>
       </main>
     </>
   );
 }
-
